@@ -6,9 +6,8 @@ session_start();
 include './env.php';
 include './utils/connexion.php';
 include './utils/utils.php';
+include 'controller/headerController.php';
 
-
-$bdd = connexion();
 
 //Récupérer le path entrer par l'utilisateur
 $url = parse_url($_SERVER['REQUEST_URI']);
@@ -16,23 +15,32 @@ $url = parse_url($_SERVER['REQUEST_URI']);
 //Test le path pour savoir in on a une route, sinon on retourne l'élément racine /
 $path = isset($url['path']) ? $url['path'] : '/';
 
+renderHeader();
+
 //Mise en place du Routeur et des routes
 
 switch($path){
     //Route pour l'accueil
     case '/coursPHP/' :
-        include 'controller/headerController.php';
+
         include 'controller/accountController.php';
-        renderHeader();
+        $bdd = connexion();
         renderAccounts($bdd);
         break;
     
     //Route pour pour la page mon compte
     case '/coursPHP/monCompte' :
-        include 'controller/headerController.php';
+       
         include 'controller/myAccountController.php';    
-        renderHeader();
         renderMyAccount();
+        break;
+
+    //Route pour pour la page ajouter catégorie
+    case '/coursPHP/ajouterCategorie' :
+       
+        include 'controller/categorieController.php'; 
+        $bdd = connexion();   
+        renderCategory($bdd);
         break;
 
     //Route pour se deconnecter
