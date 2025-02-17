@@ -47,7 +47,6 @@ switch($path){
     case '/coursPHP/deconnexion' :
         include 'controller/deconnexionController.php';
         break;
-
     //Si aucune route ne correspond : Page d'Erreur 404
     default :
         include './controller/errorController.php';
