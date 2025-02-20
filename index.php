@@ -27,7 +27,6 @@ switch($path){
         $bdd = connexion();
         renderAccounts($bdd);
         break;
-    
     //Route pour pour la page mon compte
     case '/coursPHP/monCompte' :
        
@@ -54,4 +53,3 @@ switch($path){
 }
 
 include './vue/footer.php';
-
